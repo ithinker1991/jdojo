@@ -1,0 +1,88 @@
+group 'dojo'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'com.google.protobuf'
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven { url 'http://mvnrepository.com' }
+    mavenLocal()
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        maven { url 'http://mvnrepository.com' }
+        mavenLocal()
+        mavenCentral()
+//        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.3'
+
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.4.0'
+    // google grpc
+    compile group: 'io.grpc', name: 'grpc-netty', version: '1.9.0'
+    compile group: 'io.grpc', name: 'grpc-protobuf', version: '1.9.0'
+    compile group: 'io.grpc', name: 'grpc-stub', version: '1.9.0'
+    // end google grpc
+
+}
+
+sourceSets {
+    main {
+        proto {
+            srcDir "src/main/proto"
+        }
+
+        java {
+
+            srcDir 'src/main/gen'
+            srcDir 'src/mian/java'
+
+        }
+    }
+}
+
+protobuf {
+    generatedFilesBaseDir = "$projectDir/src/"
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.5.1-1'
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.9.0'
+        }
+    }
+
+    generateProtoTasks {
+        all().each {
+            task -> task.builtins {
+                java {
+                    outputSubDir = "gen"
+                }
+
+                go {
+                    outputSubDir = "gen_go"
+                }
+            }
+        }
+
+        all() *.plugins {
+            grpc {
+                outputSubDir = "gen"
+            }
+        }
+
+    }
+
+}
