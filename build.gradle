@@ -17,7 +17,7 @@ buildscript {
         maven { url 'http://mvnrepository.com' }
         mavenLocal()
         mavenCentral()
-//        jcenter()
+        jcenter()
     }
 
     dependencies {
@@ -36,6 +36,9 @@ dependencies {
     compile group: 'io.grpc', name: 'grpc-stub', version: '1.9.0'
     // end google grpc
 
+    // for spring
+    compile 'org.springframework:spring-context:4.3.16.RELEASE'
+
 }
 
 sourceSets {
@@ -46,8 +49,8 @@ sourceSets {
 
         java {
 
-            srcDir 'src/main/gen'
-            srcDir 'src/mian/java'
+            srcDir 'src/main/gen_java'
+            srcDir 'src/main/java'
 
         }
     }
@@ -68,7 +71,7 @@ protobuf {
         all().each {
             task -> task.builtins {
                 java {
-                    outputSubDir = "gen"
+                    outputSubDir = "gen_java"
                 }
 
                 go {
@@ -79,7 +82,7 @@ protobuf {
 
         all() *.plugins {
             grpc {
-                outputSubDir = "gen"
+                outputSubDir = "gen_java"
             }
         }
 
