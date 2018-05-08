@@ -14,6 +14,7 @@
     <orderEntry type="library" name="Gradle: io.grpc:grpc-protobuf:1.9.0" level="project" />
     <orderEntry type="library" name="Gradle: io.grpc:grpc-stub:1.9.0" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-context:4.3.16.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: joda-time:joda-time:2.3" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Gradle: io.grpc:grpc-core:1.9.0" level="project" />
     <orderEntry type="library" name="Gradle: io.netty:netty-codec-http2:4.1.17.Final" level="project" />
