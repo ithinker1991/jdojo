@@ -1,8 +1,8 @@
-package com.ashu.lang.basic;
+package com.ashu.third;
 
 import org.joda.time.DateTime;
 
-public class TimeDemo {
+public class JodaTimeDemo {
 
   public static void main(String[] args) {
 

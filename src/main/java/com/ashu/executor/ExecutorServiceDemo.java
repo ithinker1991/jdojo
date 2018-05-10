@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 
-public class Application {
+public class ExecutorServiceDemo {
 
   public static void main(String[] args) throws InterruptedException {
 
