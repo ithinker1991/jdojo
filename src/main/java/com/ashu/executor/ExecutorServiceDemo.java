@@ -6,30 +6,36 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.TimerTask;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
+import sun.jvm.hotspot.debugger.ThreadAccess;
 
 public class ExecutorServiceDemo {
 
   public static void main(String[] args) throws InterruptedException {
 
-//    testBasic();
-
-    ThreadPoolExecutor te = null;
-
-
-    testCallable();
+////    testBasic();
+//
+//    ThreadPoolExecutor te = null;
+//
+//
+//    testCallable();
+    testPool();
 
   }
 
   static void testCallable() throws InterruptedException {
 
-    ExecutorService service = Executors.newCachedThreadPool();
+//    ExecutorService service = Executors.newCachedThreadPool();
+    ExecutorService service = Executors.newFixedThreadPool(10);
     List<Future<Boolean>> resultList = new LinkedList<>();
 
     for (int i = 0; i < 10; i++) {
@@ -178,7 +184,57 @@ public class ExecutorServiceDemo {
       }
       System.out.println("I'm executing job:" + job + " sleep:" + sleep);
       System.out.println(Thread.currentThread().getName() + " run");
+    }
+  }
+
+  static class TimeRunable implements Runnable {
+
+    String job;
+    CountDownLatch countDownLatch;
+
+    public TimeRunable(String job, CountDownLatch countDownLatch) {
+      this.job = job;
+      this.countDownLatch = countDownLatch;
+    }
+    @Override
+    public void run() {
+      long sleepTime = (long) (100000 * Math.random());
+      try {
+        System.out.println(Thread.currentThread().getName() + Thread.currentThread().getId() + " sleep " + sleepTime + "; job:" + job);
+        Thread.sleep(sleepTime);
+        System.out.println(Thread.currentThread().getName() + Thread.currentThread().getId() + " sleep end" + "; job:" + job);
+        countDownLatch.countDown();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
 
     }
+  }
+
+
+  static void testPool() throws InterruptedException {
+
+    CountDownLatch countDownLatch = new CountDownLatch(14);
+    ExecutorService service = Executors.newFixedThreadPool(4, new ThreadFactory() {
+      @Override
+      public Thread newThread(Runnable r) {
+        return new Thread(r, "valid-sign-");
+      }
+    });
+
+    for (int i = 0; i < 15; i++) {
+      service.submit(new TimeRunable("batch 1." + i, countDownLatch));
+    }
+
+    countDownLatch.await();
+    System.out.println("all job is down");
+    System.out.println("+++++++++++++++");
+
+    countDownLatch = new CountDownLatch(14);
+
+    for (int i = 0; i < 15; i++) {
+      service.submit(new TimeRunable("batch 2." + i, countDownLatch));
+    }
+    service.shutdown();
   }
 }
