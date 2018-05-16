@@ -27,8 +27,8 @@ public class ExecutorServiceDemo {
 //    ThreadPoolExecutor te = null;
 //
 //
-//    testCallable();
-    testPool();
+    testCallable();
+//    testPool();
 
   }
 
@@ -63,8 +63,8 @@ public class ExecutorServiceDemo {
 //            System.err.println(errorCode);
 //            System.err.println(e.getMessage());
 //            System.err.println(e.getClass());
-            System.err.println(e);
-
+//            System.err.println(e);
+//
             String msg = e.getMessage();
 
             System.err.println("msg:" + msg);
@@ -143,11 +143,11 @@ public class ExecutorServiceDemo {
       System.out.println(Thread.currentThread().getName() + " run");
 
       if (i % 3 == 0) {
-        throw new NullPointerException("ssss");
+        throw new NullPointerException("3 msg");
       }
 
       if (i == 4) {
-        throw new IllegalArgumentException("fsdfsdf");
+        throw new IllegalArgumentException("4 msg");
       }
 
       return i % 2 == 0;
