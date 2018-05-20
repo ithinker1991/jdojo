@@ -39,7 +39,13 @@ dependencies {
     // for spring
     compile 'org.springframework:spring-context:4.3.16.RELEASE'
 
+    // for google
+    compile 'com.google.guava:guava:25.0-jre'
+
+    // third part
     compile group: 'joda-time', name: 'joda-time', version: '2.3'
+
+
 
 }
 
