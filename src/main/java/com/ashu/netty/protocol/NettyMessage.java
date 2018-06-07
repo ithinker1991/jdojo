@@ -12,4 +12,12 @@ public class NettyMessage {
 
         return header;
     }
+
+    public void setHeader(Header header) {
+        this.header = header;
+    }
+
+    public void setBody(Object body) {
+        this.body = body;
+    }
 }

@@ -1,5 +1,6 @@
 package com.ashu.netty.protocol;
 
+
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufOutputStream;
 import io.netty.handler.codec.marshalling.DefaultUnmarshallerProvider;
@@ -11,18 +12,15 @@ import org.jboss.marshalling.serial.SerialMarshallerFactory;
 
 import java.io.IOException;
 
-public class ObjectEncoder {
+public class MarshallingEncoder {
     private static final byte[] LENGTH_PLACEHOLDER = new byte[4];
     Marshaller marshaller;
 
-    public ObjectEncoder() throws IOException {
-
+    public MarshallingEncoder() throws IOException {
         SerialMarshallerFactory factory = new SerialMarshallerFactory();
         MarshallingConfiguration configuration = new MarshallingConfiguration();
         configuration.setVersion(5);
-        UnmarshallerProvider provider = new DefaultUnmarshallerProvider(factory, configuration);
         marshaller = factory.createMarshaller(configuration);
-
     }
 
     protected void encode(Object msg, ByteBuf out) throws Exception {

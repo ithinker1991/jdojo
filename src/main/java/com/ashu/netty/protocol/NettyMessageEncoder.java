@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class NettyMessageEncoder extends MessageToMessageEncoder<NettyMessage> {
-    public ObjectEncoder marshallingEncoder;
+    public MarshallingEncoder marshallingEncoder;
 
     public NettyMessageEncoder() throws IOException {
         final MarshallerFactory marshallerFactory = Marshalling.getMarshallerFactory("serial");
@@ -21,7 +21,7 @@ public class NettyMessageEncoder extends MessageToMessageEncoder<NettyMessage> {
         configuration.setVersion(5);
         MarshallerProvider provider = new DefaultMarshallerProvider(
                 marshallerFactory, configuration);
-        marshallingEncoder = new ObjectEncoder();
+        marshallingEncoder = new MarshallingEncoder();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class NettyMessageEncoder extends MessageToMessageEncoder<NettyMessage> {
         sendBuf.writeByte(msg.getHeader().getType());
 
         if (msg.getBody() != null) {
-//            marshallingEncoder.encode(ctx, msg.getBody(), sendBuf);
+//            marshallingDecoder.encode(ctx, msg.getBody(), sendBuf);
             marshallingEncoder.encode(msg.getBody(), sendBuf);
         } else {
             sendBuf.writeInt(0);

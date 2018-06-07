@@ -12,4 +12,13 @@ public class Header {
     public long getSessionID() {
         return sessionID;
     }
+
+    public void setType(byte type) {
+        this.type = type;
+    }
+
+    public void setSessionID(long sessionID) {
+
+        this.sessionID = sessionID;
+    }
 }
