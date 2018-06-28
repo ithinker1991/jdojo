@@ -6,7 +6,8 @@ import java.util.Map;
 
 public enum MessageType {
   FIRST(0x00),
-  LOGIN(0x01);
+  LOGIN(0x01),
+  LOGIN_RESP(0x02);
 
 //  TRX(0x01),
 //
