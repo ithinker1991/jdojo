@@ -2,7 +2,7 @@
 .idea/*
 *iml
 .DS_Store
-.gradle
+.gradle/*
 build
 gradle
 out

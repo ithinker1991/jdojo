@@ -13,7 +13,10 @@ public class LoginAuthRespHandler extends ChannelInboundHandlerAdapter {
     private String[] whiteList = {"127.0.0.1", "127.0.0.1"};
 
 
-
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("server active");
+    }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
@@ -29,16 +32,19 @@ public class LoginAuthRespHandler extends ChannelInboundHandlerAdapter {
 
             } else {
                 boolean ok = false;
-                for (String wip: whiteList) {
-                    if (wip.equals(nodeId)) {
-                        ok = true;
-                        break;
-                    }
-                }
+//                for (String wip: whiteList) {
+////                    if (wip.equals(nodeId)) {
+////                        ok = true;
+////                        break;
+////                    }
+////                }
+                ok = true;
+
 
                 if (ok) {
                     logedNodes.add(nodeId);
                     loginResp = buildResponse((byte) 0);
+                    System.out.println("send to client " + ctx.channel().remoteAddress() + ": login_resp");
                 } else {
                     loginResp = buildResponse((byte) -1);
                 }

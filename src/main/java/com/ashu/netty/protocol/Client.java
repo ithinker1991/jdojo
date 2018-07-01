@@ -9,12 +9,15 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+import io.netty.handler.timeout.ReadTimeoutHandler;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Client {
+    private static final String LOCAL_IP = "127.0.0.1";
+    private static final int LOCAL_PORT = 50051;
 
     private ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
     EventLoopGroup group = new NioEventLoopGroup();
@@ -27,12 +30,11 @@ public class Client {
 
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new NettyMessageDecoder( 1024 * 1024, 4, 4));
+                            ch.pipeline().addLast(new NettyMessageDecoder( 1024 * 1024, 0, 4));
                             ch.pipeline().addLast(new NettyMessageEncoder());
-
-                            // TODO 心跳
-                            // TODO 权限
-
+//                            ch.pipeline().addLast("readTimeoutHandler", new ReadTimeoutHandler(1000));
+                            ch.pipeline().addLast("loginHander", new LoginAuthReqHandler());
+                            ch.pipeline().addLast("heartBeatHandler", new HeartBeatReqHander());
                         }
                     });
 
@@ -42,11 +44,15 @@ public class Client {
 
         } finally {
            executor.execute(new Runnable() {
-
                @Override
                public void run() {
                    try {
                        TimeUnit.SECONDS.sleep(5);
+                       try {
+                           connect(host, port);
+                       } catch (Exception e) {
+                           e.printStackTrace();
+                       }
 //                       connect(port, host);
                    } catch (InterruptedException e) {
                        e.printStackTrace();
@@ -57,8 +63,8 @@ public class Client {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        String host = "127.0.0.1";
-        int port = 30021;
+        String host = "0.0.0.0";
+        int port = 20001;
         new Client().connect(host, port);
     }
 }

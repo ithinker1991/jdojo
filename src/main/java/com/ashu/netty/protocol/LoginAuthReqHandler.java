@@ -1,20 +1,16 @@
 package com.ashu.netty.protocol;
 
-import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
 public class LoginAuthReqHandler extends ChannelInboundHandlerAdapter {
 
-
-  public LoginAuthReqHandler() {
-    super();
-  }
-
   @Override
   public void channelActive(ChannelHandlerContext ctx) throws Exception {
+    System.out.println("channel active");
     ctx.writeAndFlush(buildLoginReq());
-    super.channelActive(ctx);
+    System.out.println("local address: " + ctx.channel().localAddress());
+    System.out.println("send login request to " + ctx.channel().remoteAddress());
   }
 
   private NettyMessage buildLoginReq() {
@@ -30,7 +26,7 @@ public class LoginAuthReqHandler extends ChannelInboundHandlerAdapter {
   public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
     NettyMessage message = (NettyMessage) msg;
 
-    if (message.getHeader() != null && message.getHeader().getType() == MessageType.LOGIN.asByte()) {
+    if (message.getHeader() != null && message.getHeader().getType() == MessageType.LOGIN_RESP.asByte()) {
       byte loginResult = (byte) message.getBody();
       if (loginResult != (byte) 0) {
         ctx.close();

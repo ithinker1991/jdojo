@@ -9,7 +9,7 @@ public class HeartBeatRespHandler extends ChannelInboundHandlerAdapter {
   public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
     NettyMessage message = (NettyMessage)msg;
     if (message.getHeader() != null && message.getHeader().getType() == MessageType.HEARTBEAT.asByte()) {
-
+      System.out.println("recived heartbeat from " + ctx.channel().remoteAddress());
       NettyMessage heartBeatResp = buildHeartResp();
       ctx.writeAndFlush(heartBeatResp);
 

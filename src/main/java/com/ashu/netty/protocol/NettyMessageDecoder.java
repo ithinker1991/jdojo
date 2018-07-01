@@ -32,19 +32,19 @@ public class NettyMessageDecoder extends LengthFieldBasedFrameDecoder {
     protected Object decode(ChannelHandlerContext ctx, ByteBuf in) throws Exception {
 
         ByteBuf frame = (ByteBuf) super.decode(ctx, in);
+//        ByteBuf frame = in;
         if (frame == null) {
             return null;
         }
 
         NettyMessage message = new NettyMessage();
         Header header = new Header();
-        header.setSessionID(in.readLong());
-        header.setType(in.readByte());
+//        header.setSessionID(in.readLong());
+        int size = frame.readInt();
+        header.setType(frame.readByte());
 
-        int size = in.readInt();
-
-        if (in.readableBytes() > 4) {
-            message.setBody(marshallingDecoder.decode(in));
+        if (frame.readableBytes() > 4) {
+            message.setBody(marshallingDecoder.decode(frame));
         }
         message.setHeader(header);
         return message;
