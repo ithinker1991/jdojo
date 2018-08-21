@@ -130,12 +130,12 @@ public class Trie<Value> {
             trie.put(table[i], i);
         }
 
-        for (int i = 0; i < tableNotInTrie.length; i++) {
-            Assert.assertFalse(trie.contains(tableNotInTrie[i]));
+        for (String s: tableNotInTrie) {
+            Assert.assertFalse(trie.contains(s));
         }
 
-        for (int i = 0; i < table.length; i++) {
-            Assert.assertTrue(trie.contains(table[i]));
+        for (String s: table) {
+            Assert.assertTrue(trie.contains(s));
         }
     }
 
@@ -146,11 +146,45 @@ public class Trie<Value> {
         Assert.assertFalse(trie.isEmpty());
     }
 
+    public static void testLongestPrefixOf() {
+
+        String[] table = {"she", "sells", "shells", "by", "the", "shore"};
+        Trie<Integer> trie = new Trie<>();
+
+        for (int i = 0; i < table.length; i++) {
+            trie.put(table[i], i);
+        }
+
+        String key1 = "sells";
+        String result1 = trie.longestPrefixOf(key1);
+        Assert.assertEquals(result1, key1);
+
+        String key2 = "sell";
+        String result2 = trie.longestPrefixOf(key2);
+        Assert.assertEquals(result2, key2);
+
+        String key3 = "aaaaaa";
+        String result3 = trie.longestPrefixOf(key3);
+        Assert.assertNull(result3);
+
+        String key4 = null;
+        String result4 = trie.longestPrefixOf(key4);
+        Assert.assertNull(result4);
+
+        String key5 = "";
+        String result5 = trie.longestPrefixOf(key5);
+        Assert.assertNull(result5);
+
+        String key6 = table[1] + "----";
+        String result6 = trie.longestPrefixOf(key6);
+        Assert.assertEquals(result6, table[1]);
+    }
+
     public static void main(String[] args) {
         testBaic();
         testCreateTrie();
         testContains();
         testIsEmpty();
-
+        testLongestPrefixOf();
     }
 }
