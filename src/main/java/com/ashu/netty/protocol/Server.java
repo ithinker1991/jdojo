@@ -7,10 +7,7 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.ServerChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
-<<<<<<< HEAD
-=======
 import io.netty.channel.socket.SocketChannel;
->>>>>>> 3e3def817252460d28390cc7e95415df7326253e
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
@@ -29,14 +26,9 @@ public class Server {
     public void start() throws InterruptedException {
         EventLoopGroup group = new NioEventLoopGroup();
         ServerBootstrap b = new ServerBootstrap();
-<<<<<<< HEAD
-        b.group(group, group)
-                .channel((Class<? extends ServerChannel>) NioServerSocketChannel.class)
-=======
         try {
             b.group(group, group)
                 .channel(NioServerSocketChannel.class)
->>>>>>> 3e3def817252460d28390cc7e95415df7326253e
                 .option(ChannelOption.SO_BACKLOG, 100)
                 .localAddress(new InetSocketAddress(this.port))
                 .option(ChannelOption.TCP_NODELAY, true)
