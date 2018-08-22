@@ -7,7 +7,6 @@ public class ArrayDemo {
     Integer[] arr = new Integer[2];
 
     arr[1] = 1;
-
     arr[0] = 2;
 
     for (int i: arr) {
