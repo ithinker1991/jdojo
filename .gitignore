@@ -3,6 +3,7 @@
 *iml
 .DS_Store
 .gradle/*
-build
+build/*
 gradle
 out
+lib/*
