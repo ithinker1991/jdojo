@@ -4,7 +4,15 @@ import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
 
 public class BloomFliterDemo {
+  private int i;
+
+  public void fool(){
+    System.out.println(i);
+  }
+
   public static void main(String[] args) throws InterruptedException {
+
+    new BloomFliterDemo().fool();
 
 
     int ntransPerBlock = 1000;
@@ -13,7 +21,6 @@ public class BloomFliterDemo {
     long nTransPerDay = 24 * 60 * 60 * 300;
     System.out.println(nTransPerDay);
     System.out.println(nTransPerDay / 8 / 1024 / 2014 + "MB");
-
     long nTransPerYear = nTransPerDay * 365;
     System.out.println(nTransPerYear);
     long i = 10000000;
