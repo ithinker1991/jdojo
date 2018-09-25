@@ -1,12 +1,8 @@
-package com.ashu.executor;
+package com.ashu.lang.thread.executor;
 
-import java.awt.print.Book;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
-import java.util.TimerTask;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;

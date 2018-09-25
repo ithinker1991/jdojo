@@ -17,7 +17,7 @@ public class Selection extends Sort{
 
     public static void main(String[] args) {
         Selection s = new Selection();
-        Integer[] a = s.generateRandomIntArray(10);
+        Integer[] a = Sort.generateRandomIntArray(10);
         s.show(a);
         s.sort(a);
         s.show(a);

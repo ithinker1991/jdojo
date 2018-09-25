@@ -1,4 +1,4 @@
-package com.ashu.lang.Thread;
+package com.ashu.lang.thread;
 
 public class ThreadDemo {
 

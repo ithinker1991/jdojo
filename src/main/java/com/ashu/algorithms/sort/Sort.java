@@ -35,7 +35,7 @@ public abstract class Sort {
          return true;
     }
 
-    public Integer[] generateRandomIntArray(int n) {
+    public static Integer[] generateRandomIntArray(int n) {
         Integer[] a = new Integer[n];
         for (int i = 0; i < n; i++) {
             int v = (int)(Math.random() * 100);

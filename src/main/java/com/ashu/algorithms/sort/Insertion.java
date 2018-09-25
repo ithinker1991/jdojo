@@ -13,7 +13,7 @@ public class Insertion extends Sort {
 
     public static void main(String[] args) {
         Sort s = new Insertion();
-        Integer[] a = s.generateRandomIntArray(10);
+        Integer[] a = Sort.generateRandomIntArray(10);
         s.show(a);
         s.sort(a);
         s.show(a);
