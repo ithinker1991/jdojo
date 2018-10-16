@@ -1,4 +1,4 @@
-package com.ashu.lang.lambda;
+package com.ashu.java8.lambda;
 
 import java.util.ArrayList;
 import java.util.List;
