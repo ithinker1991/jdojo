@@ -12,7 +12,7 @@ import javax.crypto.NoSuchPaddingException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.collections4.map.HashedMap;
 
-public class SymmetricCryptographyDemo {
+public class NonSymmetricCryptographyDemo {
 
 
 }
