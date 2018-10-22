@@ -59,6 +59,10 @@ dependencies {
     // for spring
     compile 'org.springframework:spring-context:4.3.16.RELEASE'
 
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.11'
+    compile "org.apache.commons:commons-collections4:4.0"
+
+
 
     // third part
     compile group: 'joda-time', name: 'joda-time', version: '2.3'
