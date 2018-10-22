@@ -3,8 +3,10 @@ package com.ashu.jvm.oom;
 import java.util.ArrayList;
 import java.util.List;
 
-// VM Args：-Xms20m -Xmx20m -XX:+HeapDumpOnOutOfMemoryError
+// VM Args：-Xms20m -Xmx20m -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDetails
 public class HeapOOM {
+
+
     static class OOMObject {
 
     }
