@@ -20,7 +20,7 @@ public class NonSymmetricCryptographyDemo {
 
 class NonSymmetricCryptography {
 
-  private static final String PUBLIC_KEY = "publick_key";
+  private static final String PUBLIC_KEY = "public_key";
   private static final String PRIVATE_KEY = "private_key";
 
   private String keyAlgorithm;
