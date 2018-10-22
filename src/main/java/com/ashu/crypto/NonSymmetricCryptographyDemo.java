@@ -113,7 +113,7 @@ class NonSymmetricCryptography {
   public static void main(String[] args)
       throws NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, InvalidKeySpecException, IllegalBlockSizeException, NoSuchPaddingException {
     NonSymmetricCryptography nonSymmetricCryptography = new NonSymmetricCryptography("RSA", "RSA/ECB/PKCS1Padding", 512);
-    byte[] data = "yinshu".getBytes();
+    byte[] data = "My Data to Crypt".getBytes();
     Map<String, Key> keyMap = nonSymmetricCryptography.initKey();
     System.out.println("公钥：" + Base64.encodeBase64String(nonSymmetricCryptography.getPublicKey(keyMap)));
     System.out.println("私钥：" + Base64.encodeBase64String(nonSymmetricCryptography.getPrivateKey(keyMap)));
