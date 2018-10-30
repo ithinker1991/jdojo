@@ -5,7 +5,6 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import sun.tools.tree.NegativeExpression;
 
 public class HeartBeatReqHander extends ChannelInboundHandlerAdapter {
   private volatile ScheduledFuture<?> heartBeatFuture;
