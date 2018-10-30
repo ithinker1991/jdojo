@@ -44,9 +44,7 @@ public class FrequentlyFullGC {
             t.start();
         }
 
-        Thread t = new Thread(() -> {
-            cannotSawp();
-        });
+        Thread t = new Thread(this::cannotSawp);
         t.setName("trigger");
         t.start();
     }
