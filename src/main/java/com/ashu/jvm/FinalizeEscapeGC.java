@@ -1,4 +1,4 @@
-package com.ashu;
+package com.ashu.jvm;
 
 public class FinalizeEscapeGC {
 
