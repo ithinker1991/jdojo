@@ -14,8 +14,8 @@ public class JodaTimeDemo {
     @Override
     public void run() {
       int BLOCK_PRODUCED_INTERVAL = 5000;
-
-      while(true) {
+      int i = 0;
+      while(i++ < 1000) {
         long sleep = (long) (Math.random() * 1000);
         System.out.println("sleep :" + sleep);
         try {

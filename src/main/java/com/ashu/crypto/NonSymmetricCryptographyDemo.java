@@ -118,7 +118,7 @@ class NonSymmetricCryptography {
     System.out.println("公钥：" + Base64.encodeBase64String(nonSymmetricCryptography.getPublicKey(keyMap)));
     System.out.println("私钥：" + Base64.encodeBase64String(nonSymmetricCryptography.getPrivateKey(keyMap)));
 
-// 公钥加密私钥解密
+    // 公钥加密私钥解密
     String encryptData = Base64.encodeBase64String(nonSymmetricCryptography.encryptByPublicKey(data, nonSymmetricCryptography.getPublicKey(keyMap)));
     System.out.println("使用公钥加密后数据：" + encryptData);
     String decryptData = new String(nonSymmetricCryptography.decryptByPrivateKey(Base64.decodeBase64(encryptData), nonSymmetricCryptography.getPrivateKey(keyMap)));
