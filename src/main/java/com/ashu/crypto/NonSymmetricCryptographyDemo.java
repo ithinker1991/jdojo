@@ -4,13 +4,13 @@ import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.HashMap;
 import java.util.Map;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.collections4.map.HashedMap;
 
 public class NonSymmetricCryptographyDemo {
 
@@ -94,7 +94,7 @@ class NonSymmetricCryptography {
     KeyPair keyPair = keyPairGenerator.generateKeyPair();
     PrivateKey privateKey = keyPair.getPrivate();
     PublicKey publicKey = keyPair.getPublic();
-    Map<String, Key> keyMap = new HashedMap<>();
+    Map<String, Key> keyMap = new HashMap<>();
     keyMap.put(PRIVATE_KEY, privateKey);
     keyMap.put(PUBLIC_KEY, publicKey);
     return keyMap;
