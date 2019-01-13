@@ -1,6 +1,6 @@
-package com.ashu.concurrent.ProducerConsumerModle.awaitsignal;
+package com.ashu.concurrent.ProducerConsumerModle;
 
-public class Demo1 {
+public class WaitNotifyDemo {
 
 
   static class Buffer {
@@ -25,7 +25,7 @@ public class Demo1 {
       data[tail] = s;
       tail = (tail + 1) % MAX_SIZE;
       size++;
-      System.out.println("Producer["+ Thread.currentThread().getName() + "]生产" + "，当前总量：" + size);
+      System.out.println("Consumer["+ Thread.currentThread().getName() + "]生产" + "，当前总量：" + size);
       notifyAll();
     }
 
@@ -39,7 +39,7 @@ public class Demo1 {
       head = (head + 1) % MAX_SIZE;
       size--;
       notifyAll();
-      System.out.println("Consumer["+ Thread.currentThread().getName() + "]消费" + "，当前总量：" + size);
+      System.out.println("Producer["+ Thread.currentThread().getName() + "]消费" + "，当前总量：" + size);
       return ret;
     }
 
@@ -59,7 +59,7 @@ public class Demo1 {
     public void run() {
       while (!shouldExit) {
         try {
-          String s = "Producer[" + Thread.currentThread().getName() + "]" + "生产";
+          String s = "Consumer[" + Thread.currentThread().getName() + "]" + "生产";
           buffer.put(s);
           Thread.sleep(1000);
 
@@ -84,7 +84,7 @@ public class Demo1 {
           String s = buffer.take();
           Thread.sleep(1000);
         }
-//        System.out.println("Consumer["+ Thread.currentThread() + "]消费");
+//        System.out.println("Producer["+ Thread.currentThread() + "]消费");
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
