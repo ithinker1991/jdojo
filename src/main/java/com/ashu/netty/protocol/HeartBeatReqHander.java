@@ -16,7 +16,7 @@ public class HeartBeatReqHander extends ChannelInboundHandlerAdapter {
     if (message.getHeader() != null && message.getHeader().getType() == MessageType.LOGIN_RESP.asByte()) {
       heartBeatFuture = ctx.executor().scheduleAtFixedRate(new HeartBeatTesk(ctx), 0, 1, TimeUnit.SECONDS);
     } else if (message.getHeader() != null && message.getHeader().getType() == MessageType.HEARTBEAT_RESP.asByte()) {
-      System.out.println("recived heartbeat from server");
+      System.out.println("recived heartbeat from RpcServer");
 
     }
     else {
@@ -33,7 +33,7 @@ public class HeartBeatReqHander extends ChannelInboundHandlerAdapter {
 
     @Override
     public void run() {
-      System.out.println("send heartbeat to server:" + count.getAndIncrement());
+      System.out.println("send heartbeat to RpcServer:" + count.getAndIncrement());
       NettyMessage heatBeat = buildHeartBeatMessage();
       ctx.writeAndFlush(heatBeat);
     }
