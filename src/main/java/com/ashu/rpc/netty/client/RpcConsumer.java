@@ -1,6 +1,5 @@
 package com.ashu.rpc.netty.client;
 
-import com.ashu.rpc.netty.service.HelloService;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -24,18 +23,15 @@ public class RpcConsumer {
     private static ExecutorService executor = Executors
             .newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
-    public HelloService createProxy(Class<?> serviceClass, String providerName) {
-        InvocationHandler invocationHandler = new InvocationHandler() {
-            @Override
-            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                if (client == null) {
-                    initClient();
-                }
-                client.setPara(providerName + args[0]);
-                return executor.submit(client).get();
+    public Object createProxy(Class<?> serviceClass, String providerName) {
+        InvocationHandler invocationHandler = (proxy, method, args) -> {
+            if (client == null) {
+                initClient();
             }
+            client.setPara(providerName + args[0]);
+            return executor.submit(client).get();
         };
-        return (HelloService) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new Class<?>[]{serviceClass}, invocationHandler);
+        return Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), new Class<?>[]{serviceClass}, invocationHandler);
     }
 
     private static void initClient() {
