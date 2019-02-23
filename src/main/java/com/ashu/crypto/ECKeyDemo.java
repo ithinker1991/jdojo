@@ -10,18 +10,18 @@ import java.text.DateFormatSymbols;
 public class ECKeyDemo {
 
 
-    static class ECKey {
-        static {
-            Security.addProvider(new org.spongycastle.jce.provider.BouncyCastleProvider());
-        }
-
-
-
-    }
-
-    static {
-        Security.addProvider(new org.spongycastle.jce.provider.BouncyCastleProvider());
-    }
+//    static class ECKey {
+//        static {
+//            Security.addProvider(new org.spongycastle.jce.provider.BouncyCastleProvider());
+//        }
+//
+//
+//
+//    }
+//
+//    static {
+//        Security.addProvider(new org.spongycastle.jce.provider.BouncyCastleProvider());
+//    }
 
 
     public static void main(String[] args) throws NoSuchPaddingException, NoSuchAlgorithmException, NoSuchProviderException {

@@ -31,7 +31,7 @@ public class FrequentlyFullGC {
 //                e.printStackTrace();
 //            }
             list.add(new byte[_1M / 10]);
-            System.out.println(1L * list.size() * _1M / 10);
+            System.err.println(1L * list.size() * _1M / 10);
         }
     }
 
