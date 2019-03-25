@@ -15,7 +15,7 @@ public class LoginAuthRespHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("server active");
+        System.out.println("RpcServer active");
     }
 
     @Override

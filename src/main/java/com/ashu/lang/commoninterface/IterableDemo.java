@@ -30,5 +30,4 @@ public class IterableDemo {
       System.out.println(s);
     }
   }
-
 }
