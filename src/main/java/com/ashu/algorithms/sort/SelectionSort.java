@@ -1,6 +1,6 @@
 package com.ashu.algorithms.sort;
 
-public class Selection extends Sort{
+public class SelectionSort extends Sort{
     @Override
     public void sort(Comparable[] a) {
         int n = a.length;
@@ -16,7 +16,7 @@ public class Selection extends Sort{
     }
 
     public static void main(String[] args) {
-        Selection s = new Selection();
+        SelectionSort s = new SelectionSort();
         Integer[] a = Sort.generateRandomIntArray(10);
         s.show(a);
         s.sort(a);

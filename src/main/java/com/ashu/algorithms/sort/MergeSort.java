@@ -1,6 +1,6 @@
 package com.ashu.algorithms.sort;
 
-public class Merge extends Sort{
+public class MergeSort extends Sort{
     @Override
     public void sort(Comparable[] a) {
 
