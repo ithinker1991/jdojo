@@ -113,6 +113,10 @@ public class LRUCache {
 
     public void printList() {
         Node p = head;
+        int a = 0;
+        int b = 0;
+
+
 
         while (p != null) {
             System.out.print("(" +  p.key  +  ") -> ");
@@ -128,27 +132,30 @@ public class LRUCache {
         System.out.println();
         System.out.println("size=" + size);
     }
+    static public int reverse(int x) {
+        int ret = 0;
+
+        while (x != 0) {
+
+            if (Integer.MAX_VALUE - ret * 10 < x % 10 || Integer.MIN_VALUE - ret * 10 > x % 10) {
+                System.out.println(Integer.MIN_VALUE);
+                System.out.println(Integer.MIN_VALUE - ret * 10);
+                System.out.println(ret * 10);
+                System.out.println(x % 10);
+                System.out.println(Integer.MIN_VALUE - ret * 10 > x % 10);
+
+
+                return 0;
+            }
+            ret = ret * 10 + x % 10;
+            x = x / 10;
+        }
+
+        return (int)ret;
+    }
 
     public static void main(String[] args) {
-        LRUCache l = new LRUCache(2);
-//["LRUCache","put","put","get","put","get","get","get","put"]
-//[[2],[1,1],[2,2],[1],[3,3],[2],[3],[1],[4,4]]
-        l.put(1,1);
-        l.printList();
-        l.put(2,2);
-        l.printList();
-        l.get(1);
-        l.printList();
-        l.put(3,3);
-        l.printList();
-        l.get(2);
-        l.printList();
-        l.get(3);
-        l.printList();
-        l.get(1);
-        l.printList();
-        l.put(4,4);
-        l.printList();
+        System.out.println(reverse(-123));
     }
 
 /**

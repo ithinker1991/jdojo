@@ -11,6 +11,6 @@ public class QuickSort extends Sort {
 
   private void partition(Comparable[] array, int i, int j) {
 
-    new ArrayList()
+//    new ArrayList()
   }
 }
