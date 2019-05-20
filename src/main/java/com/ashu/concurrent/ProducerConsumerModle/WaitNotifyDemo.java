@@ -21,6 +21,7 @@ public class WaitNotifyDemo {
       while (size >= MAX_SIZE) {
         System.out.println("buffer满了，等待");
         wait();
+        System.out.println(Thread.currentThread() + " 醒过来");
       }
       data[tail] = s;
       tail = (tail + 1) % MAX_SIZE;
@@ -34,6 +35,7 @@ public class WaitNotifyDemo {
       while (size <= 0) {
         System.out.println("buffer空了，等待");
         wait();
+        System.out.println(Thread.currentThread() + " 醒过来");
       }
       String ret = data[head];
       head = (head + 1) % MAX_SIZE;
@@ -109,7 +111,6 @@ public class WaitNotifyDemo {
       t.setName(i + "");
       t.start();
     }
-
   }
 
 

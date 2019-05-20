@@ -1,6 +1,5 @@
-package com.ashu.concurrent.lock;
+package com.ashu.concurrent.mylock;
 
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class LockDemo {

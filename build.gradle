@@ -69,6 +69,9 @@ dependencies {
     // third part
     compile group: 'joda-time', name: 'joda-time', version: '2.3'
 
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.2'
+
+
 //    compile group: 'org.jboss.marshalling', name: 'jboss-marshalling-serial', version: '2.0.5.Final'
 
 
