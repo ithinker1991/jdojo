@@ -9,12 +9,12 @@ import java.nio.channels.SocketChannel;
 public class Handler implements Runnable {
   private final SocketChannel socket;
   private final SelectionKey key;
-  ByteBuffer input = ByteBuffer.allocate(1024);
-  ByteBuffer output = ByteBuffer.allocate(1024);
+  private ByteBuffer input = ByteBuffer.allocate(1024);
+  private ByteBuffer output = ByteBuffer.allocate(1024);
 
   // handler 是可以维护状态的。Runnable 也是可以重复 run 的，带状态的Runnable
-  static final int READING = 0;
-  static final int WRITING = 1;
+  private static final int READING = 0;
+  private static final int WRITING = 1;
   int state = READING;
 
   public Handler(SocketChannel socket, Selector selector) throws ClosedChannelException {

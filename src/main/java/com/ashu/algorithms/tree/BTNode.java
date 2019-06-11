@@ -2,6 +2,7 @@ package com.ashu.algorithms.tree;
 
 import java.util.List;
 import lombok.Data;
+import lombok.Getter;
 
 /**
  * 1. m 阶
@@ -14,6 +15,7 @@ public class BTNode<K extends Comparable<K>> {
   private int num = 0;
 
   // [children - 1, m]
+  @Getter
   private List<K> keys;
   // if not root then [Math.floorDiv(m / 2), m] else [2,m]
   private List<BTNode<K>> children;
