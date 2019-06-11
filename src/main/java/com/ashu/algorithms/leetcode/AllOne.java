@@ -1,7 +1,6 @@
 package com.ashu.algorithms.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 class AllOne {
 
@@ -122,10 +121,57 @@ class AllOne {
         }
     }
 
+    public static ArrayList<Integer> maxInWindows(int [] num, int size)
+    {
+
+        LinkedList<Integer> ll = new LinkedList<>();
+        ArrayList<Integer> ret = new ArrayList<>();
+
+
+        for (int i = 0; i < num.length; i++) {
+            if (ll.size() > size) {
+                ll.pollFirst();
+            }
+
+            // first 1 -> 2 -> 3 -> last
+            //
+            while (!ll.isEmpty() && ll.peekFirst() < num[i]) {
+                ll.pollFirst();
+            }
+            ll.add(num[i]);
+            ret.add(ll.getFirst());
+        }
+        return ret;
+    }
+
     public static void main(String[] args) {
+
+        int[] num = {2,3,4,2,6,2,5,1};
+        List<Integer> ret = maxInWindows(num, 3);
+        for (int i : ret) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+
+
         AllOne ao = new AllOne();
 //        ["AllOne","getMaxKey","inc","inc","getMinKey","getMaxKey"]
 //        [[],[],["1"],["1"],[],[]]
+
+
+        int[][] binaryArray = new int[][] {
+                {1, 2},
+                {1, 2}
+        };
+        List<Integer> l = new ArrayList<>();
+        LinkedList<Integer> l1 = new LinkedList<>();
+        l1.add(1);
+l1.add(1);
+
+        l1.offer(1);
+        l1.pop();
+        l1.poll();
         ao.inc("1");
         ao.inc("1");
         ao.inc("1");

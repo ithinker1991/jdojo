@@ -11,6 +11,10 @@ public class QuickSort extends Sort {
 
   private void partition(Comparable[] array, int i, int j) {
 
+<<<<<<< HEAD
 
+=======
+//    new ArrayList()
+>>>>>>> 9f1fe2cf6bc0514cb4c1c92d97d59617ac4332ae
   }
 }
